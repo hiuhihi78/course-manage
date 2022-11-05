@@ -1,0 +1,20 @@
+.content{
+    margin-top: 20px;
+}
+.course-info{
+    margin-left: 65vw;
+}
+
+.summary{
+    margin-left: 10vw;
+    margin-top: 20px;
+    max-width: 400px;
+}
+
+.course-content{
+    margin-left: 10vw;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    max-width: 1200px;
+    word-wrap: break-word;
+}
