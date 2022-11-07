@@ -413,6 +413,20 @@ public class CourseDBContext extends DBContext {
         return courses;
     }
     
+    
+
+    public void deleteCourse(int id) {
+        try {
+            String sql = "Delete from Course where id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CourseDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     public static void main(String[] args) {
         CourseDBContext db = new CourseDBContext();
         System.out.println(db.getAllCourse().get(0).getUser().isIsAdmin());
