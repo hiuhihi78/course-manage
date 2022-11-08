@@ -125,11 +125,11 @@ public class AuthFilter implements Filter {
         
         User user = (User) session.getAttribute("user");
         
-        if(user == null){
+        if(user == null){ // CHUA DANG NHAP
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");
             wrappedResponse.sendRedirect("/PRJ301_CouserOnline/login");
-        }else{
+        }else{ // DANG NHAP 
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");
             chain.doFilter(request, response);

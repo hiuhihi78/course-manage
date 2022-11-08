@@ -48,7 +48,7 @@
         <div class="header">
             <div class="header-top">
                 <i class="fa-sharp fa-solid fa-bars" id="icon-open-sidebar" onclick="OpenSideBar()"></i>
-                <h2 style="text-align:center;">ONLINE LERNING</h2>
+                <h2 style="text-align:center;" onclick="window.location.href = 'home'">ONLINE LERNING</h2>
             </div>
             <div class="header-botom"></div>
         </div>
@@ -70,14 +70,14 @@
                     <label for="category" class="col-sm-1 col-form-label">Role</label>
                     <div class="col-sm-3">
                         <select name="role" class="form-control" id="role">
-                            <option value="2"
+                            <option value="1"
                                     <c:if test="${requestScope.roleSelected == 2}">
                                 selected=""
                                 </c:if>
                                 >
                                 Author
                             </option>
-                            <option value="3"
+                            <option value="2"
                                     <c:if test="${requestScope.roleSelected == 3}">
                                 selected=""
                                 </c:if>

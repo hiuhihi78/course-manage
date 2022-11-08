@@ -45,7 +45,7 @@
             <div class="header">
                 <div class="header-top">
                     <i class="fa-sharp fa-solid fa-bars" id="icon-open-sidebar" onclick="OpenSideBar()"></i>
-                    <h2 style="text-align:center;">ONLINE LERNING</h2>
+                    <h2 style="text-align:center;" onclick="window.location.href = 'home'">ONLINE LERNING</h2>
                 </div>
                 <div class="header-botom"></div>
             </div>

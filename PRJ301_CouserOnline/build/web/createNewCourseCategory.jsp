@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -37,16 +38,21 @@
             <div class="header">
                 <div class="header-top">
                     <i class="fa-sharp fa-solid fa-bars" id="icon-open-sidebar" onclick="OpenSideBar()"></i>
-                    <h2 style="text-align:center;">ONLINE LERNING</h2>
+                    <h2 style="text-align:center;" onclick="window.location.href = 'home'">ONLINE LERNING</h2>
                 </div>
                 <div class="header-botom"></div>
             </div>
         </div>
 
-
         <div>
             <h1 class="text-center m-b-50">Creat new course category</h1>
-            <form action="createNewCourseCategory" method="post" id="addForm" style="width: 90%; margin: 0 auto">
+            <c:if test="${requestScope.courseId != null}">
+              <form action="createNewCategory2" method="post" id="addForm" style="width: 90%; margin: 0 auto">
+                <input type="hidden" name="courseId" value="${requestScope.courseId}">
+            </c:if>
+            <c:if test="${requestScope.courseId == null}">
+                <form action="createNewCourseCategory" method="post" id="addForm" style="width: 90%; margin: 0 auto">
+            </c:if>
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">

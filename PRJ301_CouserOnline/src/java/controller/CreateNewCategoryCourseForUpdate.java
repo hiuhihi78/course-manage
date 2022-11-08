@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dal.UserDBContext;
+import dal.CourseCategoryDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,14 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "EditRoleAccountController", urlPatterns = {"/editRoleAccount"})
-public class EditRoleAccountController extends HttpServlet {
+@WebServlet(name = "CreateNewCategoryCourseForUpdate", urlPatterns = {"/createNewCategory2"})
+public class CreateNewCategoryCourseForUpdate extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -32,22 +31,9 @@ public class EditRoleAccountController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        
-        UserDBContext db = new UserDBContext();
-        User user = db.getUserInfo(username);
-        request.setAttribute("user", user);
-        int roleSelected = 0;
-        if(user.isIsAdmin()){
-            roleSelected = 1;
-        }else if(user.isIsAuthor()){
-            roleSelected =2;
-        }else{
-            roleSelected = 3;
-        }
-        request.setAttribute("roleSelected", roleSelected);
-        request.getRequestDispatcher("editRoleAccount.jsp").forward(request, response);
-        
+        String courseId = request.getParameter("id");
+        request.setAttribute("courseId", courseId);
+        request.getRequestDispatcher("createNewCourseCategory.jsp").forward(request, response);
     }
 
     /**
@@ -61,12 +47,18 @@ public class EditRoleAccountController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        int role = Integer.parseInt(request.getParameter("role"));
+        String name = request.getParameter("name");
+        CourseCategoryDBContext db = new CourseCategoryDBContext();
+        boolean categoryExisted = db.checkCourseCateogoryExisted(name);
+        if(categoryExisted == true){
+            request.setAttribute("message", "This course category name was existed!");
+            request.setAttribute("name", name);
+            request.getRequestDispatcher("createNewCourseCategory.jsp").forward(request, response);
+        }
+        db.createNewCourseCategory(name);
+        String courseId = request.getParameter("courseId");
+        response.sendRedirect("updateCourse?id="+courseId);
         
-        UserDBContext db = new UserDBContext();
-        db.editRoleAccount(username, role);
-        response.sendRedirect("accountManage");
     }
 
     /**

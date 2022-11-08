@@ -34,7 +34,7 @@
             <div class="header">
                 <div class="header-top">
                     <i class="fa-sharp fa-solid fa-bars" id="icon-open-sidebar" onclick="OpenSideBar()"></i>
-                    <h2 style="text-align:center;">ONLINE LERNING</h2>
+                    <h2 style="text-align:center;" onclick="window.location.href = 'home'">ONLINE LERNING</h2>
                 </div>
                 <div class="header-botom"></div>
             </div>
@@ -74,7 +74,7 @@
                         </select>
                     </div>
                     <div class="col-sm-1">
-                        <button type="button" class="btn-increase" onclick="window.location.href = 'createNewCourseCategory'">+</button>
+                        <button type="button" class="btn-increase" onclick="window.location.href = 'createNewCategory2?id=${requestScope.course.id}'">+</button>
                     </div>
                 </div>
 

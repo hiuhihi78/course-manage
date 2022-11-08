@@ -231,17 +231,20 @@ public class UserDBContext extends DBContext {
     }
 
     public void editRoleAccount(String username, int role) {
+        String sql = "";
+        if(role == 1){
+            sql = "UPDATE [dbo].[User]\n"
+                + "   SET \n"
+                + "      [isAuthor] = 1\n"
+                + " WHERE [username] = ?";
+        }else{
+            sql = "UPDATE [dbo].[User]\n"
+                + "   SET \n"
+                + "      [isAuthor] = 0\n"
+                + " WHERE [username] = ?";
+        }
         try {
-            String sql = "UPDATE [dbo].[User]\n"
-                    + "   SET \n";
-            if(role == 1){
-                sql += " isAdmin = 1\n";
-            }else if(role == 2){
-                sql += " isAuthor = 1\n";
-            }else{
-                sql += " isAuthor = 0 , isAdmin = 0\n";
-            }
-            sql += "WHERE username = ?";
+            System.out.print(role);
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             ps.executeUpdate();
@@ -249,10 +252,10 @@ public class UserDBContext extends DBContext {
             Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static void main(String[] args) {
         UserDBContext db = new UserDBContext();
-        System.out.println(db.getUserInfo("hieu"));
+        db.editRoleAccount("haha", 1);
     }
 
 }
