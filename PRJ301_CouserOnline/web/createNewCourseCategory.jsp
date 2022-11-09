@@ -52,6 +52,9 @@
             </c:if>
             <c:if test="${requestScope.courseId == null}">
                 <form action="createNewCourseCategory" method="post" id="addForm" style="width: 90%; margin: 0 auto">
+                <input type="hidden" name="title" value="${requestScope.title}">
+                <input type="hidden" name="summary" value="${requestScope.summary}">
+                <input type="hidden" name="image" value="${requestScope.image}">
             </c:if>
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Name</label>

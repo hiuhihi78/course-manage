@@ -40,6 +40,9 @@ public class CreateNewCourse extends HttpServlet {
         CourseCategoryDBContext courseCategoryDB = new CourseCategoryDBContext();
         ArrayList<CourseCategory> courseCategorys = courseCategoryDB.getAllCourseCategory();
         request.setAttribute("category", courseCategorys);
+        String title = request.getParameter("title");
+        String summary = request.getParameter("summary");
+        String image = request.getParameter("image");
         request.getRequestDispatcher("createCourse.jsp").forward(request, response);
     }
 

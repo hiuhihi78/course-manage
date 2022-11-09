@@ -50,14 +50,14 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" id="title" class="form-control" required="">
+                        <input type="text" name="title" id="title" class="form-control" required="" value="${requestScope.title}">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Summary</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="summary" id="summary" form="addForm" rows="3"></textarea>
+                        <textarea class="form-control" name="summary" id="summary" form="addForm" rows="3">${requestScope.summary}</textarea>
                     </div>
                 </div>
 
@@ -71,14 +71,14 @@
                         </select>
                     </div>
                     <div class="col-sm-1">
-                        <button type="button" class="btn-increase" onclick="window.location.href = 'createNewCourseCategory'">+</button>
+                        <button type="button" class="btn-increase" onclick="CraeateNewCategory();">+</button>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Image</label>
                     <div class="col-sm-10">
-                        <input type="text" name="image" id="image" class="form-control">
+                        <input type="text" name="image" id="image" class="form-control" value="${requestScope.image}">
                     </div>
                 </div>
 
@@ -128,6 +128,13 @@
         }
         function OpenSideBar() {
             document.querySelector('.sideBar').style.display = 'block';
+        }
+        
+        function CraeateNewCategory(){
+            var title = document.getElementById('title').value;
+            var summary = document.getElementById('summary').value;
+            var image = document.getElementById('image').value;
+            window.location.href = 'createNewCourseCategory?title=' + title + '&summary=' + summary + '&image=' + image;
         }
     </script>
 

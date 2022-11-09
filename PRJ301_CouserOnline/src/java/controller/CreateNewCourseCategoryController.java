@@ -7,6 +7,7 @@ package controller;
 import dal.CourseCategoryDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,6 +33,12 @@ public class CreateNewCourseCategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String title = request.getParameter("title");
+        String summary = request.getParameter("summary");
+        String image = request.getParameter("image");
+        request.setAttribute("title", title);
+        request.setAttribute("summary", summary);
+        request.setAttribute("image", image);
         request.getRequestDispatcher("createNewCourseCategory.jsp").forward(request, response);
     }
 
@@ -55,7 +62,18 @@ public class CreateNewCourseCategoryController extends HttpServlet {
             request.getRequestDispatcher("createNewCourseCategory.jsp").forward(request, response);
         }
         db.createNewCourseCategory(name);
-        response.sendRedirect("createCourse");
+        
+         String title = request.getParameter("title");
+        String summary = request.getParameter("summary");
+        String image = request.getParameter("image");
+        
+        CourseCategoryDBContext courseCategoryDB = new CourseCategoryDBContext();
+        ArrayList<CourseCategory> courseCategorys = courseCategoryDB.getAllCourseCategory();
+        request.setAttribute("category", courseCategorys);
+        request.setAttribute("title", title);
+        request.setAttribute("summary", summary);
+        request.setAttribute("image", image);
+        request.getRequestDispatcher("createCourse.jsp").forward(request, response);
         
     }
 
